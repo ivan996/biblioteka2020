@@ -16,4 +16,8 @@ public interface BibliotekaInterfejs {
 	public List<Knjiga> pronadjiKnjigu(Autor autor,
 			String isbn, String naslov, String izdavac);
 	
+	public void sacuvajUFile(String putanja);
+	
+	public void ucitajIzFile(String putanja);
+	
 }
