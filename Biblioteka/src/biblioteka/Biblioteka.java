@@ -1,8 +1,17 @@
 package biblioteka;
 
+import java.io.FileNotFoundException;
+import java.io.FileReader;
+import java.io.FileWriter;
+import java.io.IOException;
+import java.io.PrintWriter;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.LinkedList;
 import java.util.List;
+
+import com.google.gson.Gson;
+import com.google.gson.GsonBuilder;
 
 import biblioteka.interfejs.BibliotekaInterfejs;
 
@@ -42,6 +51,7 @@ public class Biblioteka implements BibliotekaInterfejs {
 			throw new RuntimeException("Knjiga vec postoji u biblioteci");
 
 		knjige.add(knjiga);
+		
 	}
 
 	/**
@@ -100,13 +110,30 @@ public class Biblioteka implements BibliotekaInterfejs {
 
 	@Override
 	public void sacuvajUFile(String putanja) {
-		// TODO Auto-generated method stub
-		
+		try {
+			PrintWriter out = new PrintWriter(new FileWriter(putanja));
+			Gson gson = new GsonBuilder().setPrettyPrinting().create();
+			out.print(gson.toJson(knjige));
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}		
 	}
 
 	@Override
 	public void ucitajIzFile(String putanja) {
-		// TODO Auto-generated method stub
+		try {
+			knjige = null;
+			FileReader in = new FileReader(putanja);
+			Gson gson = new GsonBuilder().setPrettyPrinting().create();
+			
+			List<Knjiga> knjigeNova = Arrays.asList(gson.fromJson(in, Knjiga[].class));
+			knjige=knjigeNova;
+		} catch (FileNotFoundException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
 		
 	}
 
