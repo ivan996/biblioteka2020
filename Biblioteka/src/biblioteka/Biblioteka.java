@@ -110,8 +110,7 @@ public class Biblioteka implements BibliotekaInterfejs {
 
 	@Override
 	public void sacuvajUFile(String putanja) {
-		try {
-			PrintWriter out = new PrintWriter(new FileWriter(putanja));
+		try(PrintWriter out = new PrintWriter(new FileWriter(putanja))) {			
 			Gson gson = new GsonBuilder().setPrettyPrinting().create();
 			out.print(gson.toJson(knjige));
 		} catch (IOException e) {
@@ -122,14 +121,13 @@ public class Biblioteka implements BibliotekaInterfejs {
 
 	@Override
 	public void ucitajIzFile(String putanja) {
-		try {
-			knjige = null;
-			FileReader in = new FileReader(putanja);
+		try (FileReader in = new FileReader(putanja)){
+			knjige = null;			
 			Gson gson = new GsonBuilder().setPrettyPrinting().create();
 			
 			List<Knjiga> knjigeNova = Arrays.asList(gson.fromJson(in, Knjiga[].class));
 			knjige=knjigeNova;
-		} catch (FileNotFoundException e) {
+		} catch (Exception e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}

@@ -1,0 +1,30 @@
+[
+  {
+    "naslov": "Knjiga 1",
+    "isbn": "12345678",
+    "autori": [
+      {
+        "ime": "Autor 1",
+        "prezime": "Autor 1 Prezime"
+      },
+      {
+        "ime": "Autor 2",
+        "prezime": "Autor 2 Prezime"
+      }
+    ],
+    "izdavac": "Vulkan",
+    "izdanje": 2
+  },
+  {
+    "naslov": "Knjiga 2",
+    "isbn": "12345478",
+    "autori": [
+      {
+        "ime": "Autor 3",
+        "prezime": "Autor 3 Prezime"
+      }
+    ],
+    "izdavac": "Vulkan",
+    "izdanje": 4
+  }
+]
